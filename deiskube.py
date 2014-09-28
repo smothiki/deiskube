@@ -23,6 +23,13 @@ class KubeHTTPClient():
         resp = self.conn.getresponse()
         print resp.read()
 
+      def _get_pods(self):
+        self.conn.request('GET','/api/'+self.apiversion+'/'+'pods')
+        resp = self.conn.getresponse()
+        print resp.read()
+        print "headers"
+        print resp.getheaders()
+
 
 j=KubeHTTPClient("172.17.8.100","8080","v1beta1")
-j.testurl()
+j._get_pods()
